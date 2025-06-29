@@ -1,1 +1,8 @@
 .history
+.env
+
+fe/node_modules
+fe/package-lock.json
+
+be/vendor
+be/composer.lock

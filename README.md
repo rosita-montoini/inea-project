@@ -1,19 +1,23 @@
 # Inea vue project set up
 
-## MySql set up
-
-- mysql -u root -p
-- CREATE DATABASE project_demo;
-- USE project_demo;
-- CREATE TABLE auth_users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  email VARCHAR(100) UNIQUE,
-  password VARCHAR(255)
-  );
-
 ## Front-end set up
 
 - fe/
-  npm install
-  npm run dev
+
+  - npm install
+  - npm run dev
+
+## Back-end set up
+
+- be/
+
+  - composer install
+  - php -S localhost:8000
+
+- Create a .env file in the root folder and put your variables there, like in the .env.example file.
+
+## MySql set up
+
+### To install db run this command
+
+- mysql -u root -p < sql/init.sql
