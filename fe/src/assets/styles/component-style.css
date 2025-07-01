@@ -1,0 +1,68 @@
+.component-container {
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.component-table {
+  max-width: 1300px;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.component-table th,
+.component-table td {
+  padding: 12px;
+  border: 1px solid #d3d3d3;
+  word-wrap: break-word;
+}
+
+.component-table th {
+  background-color: #e4e2e2;
+  font-weight: bold;
+  text-align: center;
+}
+
+.component-table td.button {
+  text-align: left;
+  border: none;
+}
+
+.component-table td.button button {
+  all: unset;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  margin: 5px;
+}
+
+.component-table td.button .edit-button {
+  background-color: #e4e2e2;
+}
+
+.component-table td.button .edit-button:hover {
+  background-color: #d3d3d3;
+}
+
+.component-table td.button .add-button {
+  color: #fff;
+  background-color: #4dc000;
+}
+
+.component-table td.button .add-button:hover {
+  background-color: #47b300;
+}
+
+@media (max-width: 768px) {
+  .component-table th,
+  .component-table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}

@@ -1,8 +1,9 @@
 .history
-.env
 
 fe/node_modules
 fe/package-lock.json
+fe/.env
 
 be/vendor
 be/composer.lock
+be/.env
