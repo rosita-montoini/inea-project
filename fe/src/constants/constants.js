@@ -18,3 +18,8 @@ export const baseTaskFields = [
   { name: "project_id", label: "Project", type: "select" },
   { name: "assigned_to", label: "User", type: "select" },
 ];
+
+export const baseProjectFields = [
+  { name: "name", label: "Name", type: "input" },
+  { name: "description", label: "Description", type: "textarea" },
+];

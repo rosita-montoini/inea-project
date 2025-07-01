@@ -10,42 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require_once "../db.php";
 require_once "../services/taskService.php";
+require_once "../services/ApiService.php";
 
 header("Content-Type: application/json");
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $tasks = getAllTasks($pdo);
-    echo json_encode($tasks);
-    exit;
-
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if (!$data) {
-        http_response_code(400);
-        echo json_encode(['error' => 'Invalid task data']);
-        exit;
-    }
-
-    if (isset($data['id']) && !empty($data['id'])) {
-        $result = updateTask($pdo, $data);
-
-        if ($result) {
-            echo json_encode(['success' => true, 'message' => 'Task updated']);
-            exit;
-        } else {
-            http_response_code(500);
-            echo json_encode(['error' => 'Task update failed']);
-            exit;
-        }
-    } else {
-        http_response_code(400);
-        echo json_encode(['error' => 'Missing task id']);
-        exit;
-    }
-
-} else {
-    http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
-    exit;
-}
+//use service for request handling 
+ApiService::handleRequest($pdo, 'getAllTasks', 'updateTask', 'createTask');

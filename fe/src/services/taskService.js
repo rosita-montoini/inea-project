@@ -18,3 +18,15 @@ export async function updateTask(task) {
   if (!res.ok) throw new Error("Failed to update task");
   return res.json();
 }
+
+export async function createTask(taskData) {
+  const res = await fetch(`${API_BASE}/tasks.php`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(taskData),
+  });
+  if (!res.ok) throw new Error("Failed to create task");
+  return res.json();
+}

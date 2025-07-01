@@ -1,10 +1,14 @@
 .component-container {
-  padding: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .component-table {
@@ -17,52 +21,75 @@ h2 {
 .component-table th,
 .component-table td {
   padding: 12px;
-  border: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
   word-wrap: break-word;
 }
 
 .component-table th {
-  background-color: #e4e2e2;
   font-weight: bold;
-  text-align: center;
+  border-bottom: 1px solid #d3d3d3;
+  text-align: left;
+}
+
+.status-open {
+  color: #4dc000;
+  font-weight: 600;
+}
+
+.status-in_progress {
+  color: #0099ff;
+  font-weight: 600;
+}
+
+.status-done {
+  color: #838383;
+  font-weight: 600;
 }
 
 .component-table td.button {
-  text-align: left;
-  border: none;
-}
-
-.component-table td.button button {
-  all: unset;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-  margin: 5px;
+  text-align: right;
+  min-width: 80px;
 }
 
 .component-table td.button .edit-button {
-  background-color: #e4e2e2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888888;
+  transition: color 0.2s ease;
+  font-size: 18px;
 }
 
 .component-table td.button .edit-button:hover {
-  background-color: #d3d3d3;
+  color: #6e6e6e;
 }
 
-.component-table td.button .add-button {
-  color: #fff;
-  background-color: #4dc000;
+.component-button {
+  float: left;
 }
 
-.component-table td.button .add-button:hover {
-  background-color: #47b300;
+.add-button {
+  padding: 3px 6px;
+  border: none;
+  margin-top: 30px;
+  cursor: pointer;
+  background-color: #58d803;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #54cf01;
 }
 
 @media (max-width: 768px) {
   .component-table th,
   .component-table td {
-    padding: 8px;
+    padding: 7px;
     font-size: 14px;
+  }
+
+  .component-table td.button .edit-button {
+    font-size: 15px;
   }
 }

@@ -27,6 +27,7 @@
               </option>
             </template>
           </select>
+          <textarea v-else v-model="form[field.name]" class="form-control" />
         </div>
         <div class="form-actions">
           <button type="submit">Save</button>
@@ -106,13 +107,18 @@ h3 {
 }
 
 input.form-control,
-select.form-control {
+select.form-control,
+textarea.form-control {
   padding: 8px 12px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 100%;
   box-sizing: border-box;
+}
+
+textarea {
+  font-family: inherit;
 }
 
 .form-actions {
