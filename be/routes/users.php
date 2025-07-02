@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once "../db.php";
 require_once "../services/userService.php";
-
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 

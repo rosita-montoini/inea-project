@@ -31,7 +31,7 @@ class ApiService {
                 $newData = $createFunc($pdo, $data);
 
                 if ($newData) {
-                    echo json_encode(['success' => true, 'message' => 'Created successfully', 'id' => $newId]);
+                    echo json_encode(['success' => true, 'message' => 'Created successfully']);
                     exit;
                 } else {
                     http_response_code(500);
