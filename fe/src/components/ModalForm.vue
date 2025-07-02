@@ -153,4 +153,21 @@ textarea {
 .form-actions button[type="button"]:hover {
   background-color: #ddd;
 }
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 300px;
+  }
+  input.form-control,
+  select.form-control,
+  textarea.form-control {
+    font-size: 12px;
+  }
+  .form-group label {
+    font-size: 12px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+}
 </style>

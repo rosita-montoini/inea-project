@@ -1,5 +1,6 @@
 export const navigationItems = [
   { to: "/tasks", label: "Tasks" },
+  { to: "/dashboard", label: "Dashboard" },
   { to: "/projects", label: "Projects" },
 ];
 

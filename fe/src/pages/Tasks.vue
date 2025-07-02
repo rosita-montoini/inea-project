@@ -96,8 +96,8 @@ const expandTasks = () => {
 
     return {
       ...task,
-      project_name: project ? project.name : "Unknown",
-      user_name: user ? user.name : "Unknown",
+      project_name: project ? project.name : " ",
+      user_name: user ? user.name : " ",
     };
   });
 };

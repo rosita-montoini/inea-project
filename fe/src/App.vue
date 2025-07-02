@@ -1,7 +1,9 @@
 <template>
   <main>
     <Navigation :items="navigationItems" />
-    <router-view />
+    <div class="page-content">
+      <router-view />
+    </div>
   </main>
 </template>
 
