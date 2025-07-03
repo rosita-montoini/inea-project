@@ -26,3 +26,7 @@
 ### To install db run this command
 
 - mysql -u root -p < sql/init.sql
+
+## Functionality
+
+- To view administrator features, you should log in as bill.gates@example.com, password: 123456

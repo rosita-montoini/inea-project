@@ -5,6 +5,7 @@
       <table class="component-table">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
             <th v-if="isAdmin"></th>
@@ -12,6 +13,7 @@
         </thead>
         <tbody>
           <tr v-for="project in projects" :key="project.id">
+            <td>{{ project.id }}</td>
             <td>{{ project.name }}</td>
             <td>{{ project.description }}</td>
             <td v-if="isAdmin" class="button">

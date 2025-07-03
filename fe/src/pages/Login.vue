@@ -13,16 +13,25 @@
           class="form-control"
         />
       </div>
-      <div class="form-group">
+      <div class="form-group password-field">
         <label for="password">Password</label>
         <input
           v-model="password"
-          type="password"
+          :type="showPassword ? 'text' : 'password'"
           placeholder="Password"
           autocomplete="current-password"
           required
           class="form-control"
         />
+        <button
+          type="button"
+          class="toggle-password-btn"
+          @click="togglePasswordVisibility"
+          :aria-label="showPassword ? 'Hide password' : 'Show password'"
+        >
+          {{ showPassword ? "Hide password" : "Show password" }}
+          <font-awesome-icon :icon="showPassword ? 'eye-slash' : 'eye'" />
+        </button>
       </div>
       <div class="form-actions">
         <button type="submit">Login</button>
@@ -42,110 +51,15 @@ const email = ref("");
 const password = ref("");
 const error = ref("");
 const router = useRouter();
+const showPassword = ref(false);
+
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value;
+}
 
 const userLogin = async () => {
   await login(email, password, router, error);
 };
 </script>
 
-<style scoped>
-.form-container {
-  background: white;
-  padding: 20px 30px;
-  border-radius: 8px;
-  width: 400px;
-  margin: 0 auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.auth-form {
-  margin-top: 60px;
-}
-
-h2 {
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-}
-
-.form-group {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 5px;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-input.form-control {
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-input.form-control:focus {
-  border-color: #409eff;
-  outline: none;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 25px 0;
-}
-
-.form-actions button {
-  padding: 8px 25px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  background-color: #409eff;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.form-actions button:hover {
-  background-color: #66b1ff;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-  text-align: center;
-  font-size: 14px;
-}
-
-router-link {
-  margin-top: 15px;
-  color: #409eff;
-  text-decoration: none;
-}
-
-router-link:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .form-container {
-    width: 300px;
-  }
-  input.form-control {
-    font-size: 12px;
-  }
-  .form-group label {
-    font-size: 12px;
-  }
-  h2 {
-    font-size: 16px;
-  }
-}
-</style>
+<style scoped src="@/assets/styles/auth-style.css"></style>

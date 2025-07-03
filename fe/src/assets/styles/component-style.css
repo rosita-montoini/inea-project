@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 70px;
 }
 
 h2 {
@@ -22,10 +23,6 @@ h2 {
   padding: 12px;
   border-bottom: 1px solid #d3d3d3;
   word-wrap: break-word;
-}
-
-.comment-container {
-  align-items: end;
 }
 
 .component-table th {
@@ -77,13 +74,28 @@ h2 {
   background-color: #54cf01;
 }
 
-.comments strong {
+tr.comments-container,
+tr.comments-container td {
+  border: none;
+}
+
+tr.comments-container li {
+  padding-bottom: 15px;
+}
+
+.comments-container strong {
   color: #888888;
 }
-.created-at {
-  font-size: 14px;
-  margin-top: 40px;
+
+.comments-container em {
   color: #888888;
+  margin-left: 40px;
+  font-size: 14px;
+}
+
+.comment-button-container {
+  border: none;
+  text-align: end;
 }
 
 .add-comment-button {

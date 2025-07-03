@@ -5,7 +5,7 @@
       <form @submit.prevent="submit">
         <div class="form-group">
           <label>Comment</label>
-          <textarea v-model="form['name']" class="form-control" />
+          <textarea v-model="form['comment']" class="form-control" />
         </div>
         <div class="form-actions">
           <button type="submit">Save</button>
@@ -32,7 +32,6 @@ watch(
   (newVal) => {
     if (newVal) {
       Object.assign(form, JSON.parse(JSON.stringify(newVal)));
-      console.log(form);
     }
   },
   { immediate: true }

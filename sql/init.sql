@@ -85,5 +85,5 @@ INSERT INTO tasks (title, status, project_id, assigned_to) VALUES
 ('Build search and filtering system', 'in_progress', 3, 2);
 
 INSERT INTO task_comments (comment, task_id, user_id) VALUES
-('New comment 1', 1, 1),
-('New comment 2', 4, 2);
+('Tested and ready for review', 1, 1),
+('Pushed initial version to the dev branch', 4, 2);

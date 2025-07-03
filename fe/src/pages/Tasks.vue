@@ -5,6 +5,7 @@
       <table class="component-table">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Title</th>
             <th>Status</th>
             <th>Project</th>
@@ -15,6 +16,7 @@
         <tbody>
           <template v-for="task in tasks" :key="task.id">
             <tr>
+              <td>{{ task.id }}</td>
               <td>{{ task.title }}</td>
               <td :class="`status-${task.status.replace(/\s+/g, '_')}`">
                 {{ task.status }}
@@ -22,36 +24,49 @@
               <td>{{ task.project_name }}</td>
               <td>{{ task.user_name }}</td>
               <td v-if="isAdmin" class="button">
-                <button class="edit-button" @click="editTask(task)">
+                <button
+                  title="Edit task"
+                  class="edit-button"
+                  @click="editTask(task)"
+                >
                   <font-awesome-icon icon="edit" />
                 </button>
               </td>
             </tr>
-            <tr>
-              <td :colspan="isAdmin ? 5 : 3">
-                <div class="comments">
+            <tr
+              class="comments-container"
+              v-if="task.comments && task.comments.length > 0"
+            >
+              <td></td>
+              <td colspan="4">
+                <div>
                   <strong>Comments:</strong>
                   <ul>
                     <li v-for="comment in task.comments" :key="comment.id">
-                      {{ comment.comment }} —
-                      <em>Author: {{ comment.author }}</em>
-                      <div>
-                        <span class="created-at">{{ comment.created_at }}</span>
-                      </div>
+                      {{ comment.comment }}
+                      <em>
+                        Author: {{ comment.author }} - {{ comment.created_at }}
+                      </em>
                     </li>
                   </ul>
                 </div>
               </td>
-              <td v-if="!isAdmin" class="button">
-                <button class="add-comment-button" @click="addComment(task)">
-                  Comment
+            </tr>
+            <tr class="comment-button-container">
+              <td colspan="5" v-if="!isAdmin">
+                <button
+                  title="Add comment"
+                  class="add-comment-button"
+                  @click="addComment(task)"
+                >
+                  Add
                 </button>
               </td>
             </tr>
           </template>
         </tbody>
       </table>
-      <div v-if="isAdmin" class="component-button">
+      <div v-if="isAdmin" title="Add task" class="button">
         <button class="add-button" @click="addTask()">Add task</button>
       </div>
     </div>
@@ -71,7 +86,7 @@
     <ModalCommentForm
       v-if="showFormComment"
       :model-value="addNewComment"
-      @submit="saveTask"
+      @submit="saveComment"
       @close="showFormComment = false"
     />
   </div>
@@ -83,7 +98,10 @@ import ModalForm from "@/components/ModalForm.vue";
 import ModalCommentForm from "@/components/ModalCommentForm.vue";
 import { fetchTasks, updateTask, createTask } from "@/services/taskService";
 import { fetchUsers } from "@/services/userService";
-import { fetchTaskComments } from "@/services/taskCommentsService";
+import {
+  fetchTaskComments,
+  createTaskComment,
+} from "@/services/taskCommentsService";
 import { fetchProjects } from "@/services/projectService";
 import { baseTaskFields } from "@/constants/constants.js";
 import { authState } from "@/stores/authState";
@@ -105,6 +123,10 @@ const isAuthUser = computed(() => authState.user?.id);
 
 const loadTasks = async () => {
   tasks.value = await fetchTasks();
+};
+
+const loadComments = async () => {
+  taskComments.value = (await fetchTaskComments()) || [];
 };
 
 //expanding task fields, adding options to special field
@@ -130,13 +152,11 @@ const loadFormData = async () => {
 };
 
 const expandTasks = async () => {
-  taskComments.value = (await fetchTaskComments()) || [];
-
   tasks.value = tasks.value.map((task) => {
     const project = projects.value.find((p) => p.id === task.project_id);
     const user = users.value.find((u) => u.id === task.assigned_to);
 
-    const allTaskComments = taskComments.value
+    const allComments = taskComments.value
       .filter((c) => c.task_id === task.id)
       .map((comment) => {
         const author = users.value.find((u) => u.id === comment.user_id);
@@ -150,7 +170,7 @@ const expandTasks = async () => {
       ...task,
       project_name: project ? project.name : "",
       user_name: user ? user.name : "",
-      comments: allTaskComments ?? [],
+      comments: allComments ?? [],
     };
   });
 };
@@ -171,16 +191,6 @@ const addTask = () => {
   showForm.value = true;
 };
 
-const addComment = (task) => {
-  addNewComment.value = {
-    comment: "",
-    task_id: task.id,
-    user_id: isAuthUser,
-    created_at: new Date(),
-  };
-  showFormComment.value = true;
-};
-
 const saveTask = async (taskData) => {
   if (isNewTask.value) {
     await createTask(taskData);
@@ -191,8 +201,25 @@ const saveTask = async (taskData) => {
   await loadAllData();
 };
 
+const addComment = (task) => {
+  addNewComment.value = {
+    comment: "",
+    created_at: new Date().toISOString(),
+    task_id: task.id,
+    user_id: isAuthUser,
+  };
+  showFormComment.value = true;
+};
+
+const saveComment = async (data) => {
+  await createTaskComment(data);
+  showFormComment.value = false;
+  await loadAllData();
+};
+
 const loadAllData = async () => {
   await loadTasks();
+  await loadComments();
   await loadFormData();
   expandTasks();
 };

@@ -4,9 +4,14 @@ import App from "./App.vue";
 import router from "./router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faPlus,
+  faEye,
+  faEyeSlash,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faEdit, faPlus);
+library.add(faEdit, faPlus, faEye, faEyeSlash);
 
 const app = createApp(App);
 app.use(router);
