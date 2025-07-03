@@ -37,10 +37,30 @@ CREATE TABLE IF NOT EXISTS task_comments (
 );
 
 INSERT INTO users (name, email, role, password_hash) VALUES
-('Bill Gates', 'bill.gates@example.com', 'admin', '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'),
-('Steve Jobs', 'steve.jobs@example.com', 'user', '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'),
-('Mark Zuckerberg', 'mark.zuckerberg@example.com', 'user', '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'),
-('Sergey Brin', 'sergey.brin@example.com', 'user', '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce');
+(
+  'Bill Gates', 
+  'bill.gates@example.com', 
+  'admin', 
+  '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'
+),
+(
+  'Steve Jobs', 
+  'steve.jobs@example.com', 
+  'user', 
+  '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'
+),
+(
+  'Mark Zuckerberg', 
+  'mark.zuckerberg@example.com', 
+  'user', 
+  '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'
+),
+(
+  'Sergey Brin', 
+  'sergey.brin@example.com', 
+  'user', 
+  '$2y$10$5JK0yib4s4AO9pOmt6gXMetDAklg23eTnNn4yYOR/8pL//AIs33Ce'
+);
 
 INSERT INTO projects (name, description) VALUES
 (
@@ -58,10 +78,7 @@ INSERT INTO projects (name, description) VALUES
 
 INSERT INTO tasks (title, status, project_id, assigned_to) VALUES
 ('Create database schema for clients and leads', 'in_progress', 1, 1),
-('Design lead input form UI', 'open', 1, 1),
 ('Design workout logging screen', 'in_progress', 2, 3),
-('Build calorie tracking API', 'open', 2, 3),
-('Integrate wearable device data', 'in_progress', 2, 3),
 ('Implement food diary feature', 'done', 2, 3),
 ('Implement drag-and-drop for task cards', 'open', 3, 2),
 ('Add real-time updates with WebSocket', 'open', 3, 2),

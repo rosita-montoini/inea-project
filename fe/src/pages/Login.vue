@@ -8,6 +8,7 @@
           v-model="email"
           type="email"
           placeholder="Email"
+          autocomplete="email"
           required
           class="form-control"
         />
@@ -18,6 +19,7 @@
           v-model="password"
           type="password"
           placeholder="Password"
+          autocomplete="current-password"
           required
           class="form-control"
         />

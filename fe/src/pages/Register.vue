@@ -1,6 +1,6 @@
 <template>
   <div class="form-container register-form">
-    <h2>Login</h2>
+    <h2>Register</h2>
     <form @submit.prevent="userRegister">
       <div class="form-group">
         <label for="name">Name</label>
@@ -18,6 +18,7 @@
           v-model="data.email"
           type="email"
           placeholder="Email"
+          autocomplete="email"
           required
           class="form-control"
         />
@@ -28,6 +29,7 @@
           v-model="data.password"
           type="password"
           placeholder="Password"
+          autocomplete="new-password"
           required
           class="form-control"
         />

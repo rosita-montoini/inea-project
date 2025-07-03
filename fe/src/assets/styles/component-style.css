@@ -24,6 +24,10 @@ h2 {
   word-wrap: break-word;
 }
 
+.comment-container {
+  align-items: end;
+}
+
 .component-table th {
   font-weight: bold;
   border-bottom: 1px solid #d3d3d3;
@@ -71,6 +75,29 @@ h2 {
 
 .add-button:hover {
   background-color: #54cf01;
+}
+
+.comments strong {
+  color: #888888;
+}
+.created-at {
+  font-size: 14px;
+  margin-top: 40px;
+  color: #888888;
+}
+
+.add-comment-button {
+  font-size: 14px;
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #aaaaaa;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.add-comment-button:hover {
+  background-color: #888888;
 }
 
 @media (max-width: 768px) {

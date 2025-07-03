@@ -38,8 +38,6 @@ const createChart = () => {
     (task) => task.project_id === props.projectId
   );
 
-  console.log(filteredTasks);
-
   const statusCounts = {
     open: 0,
     in_progress: 0,

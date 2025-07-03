@@ -26,7 +26,9 @@ export async function checkAuth() {
   });
 
   const data = await res.json();
+
   authState.isAuthenticated = data.authenticated;
   authState.user = data.user || null;
+
   return data;
 }

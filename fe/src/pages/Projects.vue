@@ -7,14 +7,14 @@
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <th></th>
+            <th v-if="isAdmin"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="project in projects" :key="project.id">
             <td>{{ project.name }}</td>
             <td>{{ project.description }}</td>
-            <td class="button">
+            <td v-if="isAdmin" class="button">
               <button class="edit-button" @click="editProject(project)">
                 <font-awesome-icon icon="edit" />
               </button>
@@ -22,7 +22,7 @@
           </tr>
         </tbody>
       </table>
-      <div class="component-button">
+      <div v-if="isAdmin" class="component-button">
         <button class="add-button" @click="addProject(project)">
           Add project
         </button>
@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import {
   fetchProjects,
   updateProject,
@@ -52,12 +52,16 @@ import {
 } from "@/services/projectService";
 import { baseProjectFields } from "@/constants/constants.js";
 import ModalForm from "@/components/ModalForm.vue";
+import { authState } from "@/stores/authState";
+import { checkAuth } from "@/services/auth/authService";
 
 const projects = ref([]);
 const selectedProject = ref({});
 const formFields = ref([]);
 const showForm = ref(false);
 const isNewProject = ref(false);
+
+const isAdmin = computed(() => authState.user?.role === "admin");
 
 const loadProjects = async () => {
   projects.value = await fetchProjects();
@@ -89,6 +93,7 @@ const saveProject = async (projectData) => {
 };
 
 onMounted(async () => {
+  await checkAuth();
   await loadProjects();
 });
 </script>
